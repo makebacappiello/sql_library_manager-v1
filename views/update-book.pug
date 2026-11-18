@@ -1,0 +1,63 @@
+//- Use layout.pug as the page wrapper
+extends layout
+
+//- Fill in the "content" block from layout.pug
+block content
+
+  h1 Update Book
+
+  //- Only show this box if the route passed in a list of errors
+  if errors
+
+    //- The red error box (styled by .error in the CSS)
+    div.error
+
+      //- Heading for the error box
+      h2 Oops!
+
+      ul
+
+        //- Loop through each error message
+        each error in errors
+
+          //- Show one error message
+          li= error
+
+  //- The form sends its data to /books/ plus this book's id, using POST
+  form(action=`/books/${book.id}`, method='post')
+
+    p
+      label(for='title') Title
+
+      //- Title input, filled in with the book's current title
+      input#title(name='title', type='text', value=book.title)
+
+    p
+      label(for='author') Author
+      //- Author input, filled in with the book's current author
+      input#author(name='author', type='text', value=book.author)
+
+    p
+      label(for='genre') Genre
+      //- Genre input, filled in with the book's current genre
+      input#genre(name='genre', type='text', value=book.genre)
+
+    p
+      label(for='year') Year
+      //- Year input, filled in with the book's current year
+      input#year(name='year', type='text', value=book.year)
+
+    p
+      //- Button that sends the form
+      input(type='submit', value='Update Book')
+
+    p
+      //- Button that goes back to the books list without saving
+      a.button(href='/books') Cancel
+
+  //- A second form, just for deleting a book which posts to the delete route
+  form(action=`/books/${book.id}/delete`, method='post', onsubmit="return confirm('Are you sure you want to delete this book? This cannot be undone.')")
+
+    p
+      //- Red-flag button that sends the delete form (asks for confirmation first)
+      input(type='submit', value='Delete Book')

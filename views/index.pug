@@ -1,0 +1,37 @@
+extends layout
+
+block content
+  h1 Books
+  p     
+    a.button(href='/books/new') Create New Book
+  //- Table that lists the books
+  table
+    //- Header section of the table
+    thead
+      //- One row of column headings
+      tr
+        //- Column heading for the title
+        th Title
+        //- Column heading for the author
+        th Author
+        //- Column heading for the genre
+        th Genre
+        //- Column heading for the year
+        th Year
+    //- Body section of the table, one row per book
+    tbody
+      //- Loop through the books list passed in from the route
+      each book in books
+        //- Start a new row for this book
+        tr
+          //- Title cell
+          td
+            //- Link to this book's detail page, using its id
+            a(href=`/books/${book.id}`)= book.title
+          //- Author cell
+          td= book.author
+          //- Genre cell
+          td= book.genre
+          //- Year cell
+          td= book.year
+

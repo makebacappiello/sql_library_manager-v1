@@ -1,0 +1,59 @@
+//- Use layout.pug as the page wrapper
+extends layout
+
+//- Fill in the "content" block from layout.pug
+block content
+
+  h1 New Book
+
+  //- Only show this box if the route passed in a list of errors (we'll add that later)
+  if errors
+
+    //- The red error box
+    div.error
+
+      //- Heading for the error box
+      h2 Oops!
+
+      ul
+
+        //- Loop through each error message
+        each error in errors
+
+          //- Show one error message
+          li= error
+
+  //-Form sends its data to /books/new using POST
+  form(action='/books/new', method='post')
+
+    p
+      label(for='title') Title
+
+      //- Title input refills with the book's title if there is one
+      input#title(name='title', type='text', value=book.title)
+
+    p
+      label(for='author') Author
+
+      //- Author input refills with the book's author if there is one
+      input#author(name='author', type='text', value=book.author)
+
+    p
+      label(for='genre') Genre
+
+      //- Genre input refills with the book's genre if there is one
+      input#genre(name='genre', type='text', value=book.genre)
+
+    p
+      label(for='year') Year
+
+      //- Year input refills with the book's year if there is one
+      input#year(name='year', type='text', value=book.year)
+
+    p
+      //- Button that sends the form
+      input(type='submit', value='Create New Book')
+
+    p
+      //- Button that goes back to the books list without saving 
+      a.button(href='/books') Cancel
