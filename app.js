@@ -1,4 +1,3 @@
-var createError = require("http-errors");
 var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
@@ -6,7 +5,6 @@ var logger = require("morgan");
 const { sequelize } = require("./models"); // import the sequelize instance that the CLI set up in models/index.js
 
 var indexRouter = require("./routes/index");
-var usersRouter = require("./routes/users");
 const booksRouter = require("./routes/books"); // import the books routes
 
 var app = express();
@@ -23,7 +21,7 @@ var app = express();
   }
 })();
 
-// view engine setup
+// tell Express where the Pug templates are and to use Pug to render them
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
 
@@ -34,7 +32,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
-app.use("/users", usersRouter);
 
 // send any request starting with "/books" to the books router
 app.use("/books", booksRouter);

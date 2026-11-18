@@ -2,13 +2,10 @@
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Book extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
+    // this model has no links to other models, so this method is empty
     static associate(models) {
-      // define association here
+      // Sequelize calls this method automatically
+      // nothing to connect yet
     }
   }
   Book.init(
