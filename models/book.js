@@ -33,8 +33,8 @@ module.exports = (sequelize, DataTypes) => {
         validate: {
           // validation rules for author
           notNull: {
-            // rule 1: a author must be provided
-            msg: "Author is required", // msg shown when no author   is entered
+            // rule 1: an author must be provided
+            msg: "Author is required", // msg shown when no author is entered
           },
           notEmpty: {
             //rule 2: author can't be empty string

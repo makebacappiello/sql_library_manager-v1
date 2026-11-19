@@ -7,7 +7,7 @@ const router = express.Router();
 // import the Book model so we can read from the database
 const { Book } = require("../models");
 
-// The boks route shows the full list of books
+// The books route shows the full list of books
 // runs when the browser requests "/books"
 
 router.get("/", async (req, res, next) => {
